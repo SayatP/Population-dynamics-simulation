@@ -65,3 +65,7 @@ class Grid:
     def getNeighbors(self, row, col, dist):
         ri, ci = self._get_adjacent_with_dist(row, col, dist)
         return self.grid[list(ri), :][:, list(ci)]
+
+    def getNeighborsFromNext(self, _next, row, col, dist):
+        ri, ci = self._get_adjacent_with_dist(row, col, dist)
+        return _next[list(ri), :][:, list(ci)]
