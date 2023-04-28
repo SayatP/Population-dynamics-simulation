@@ -14,7 +14,7 @@ class RandomGridGenerator:
     def getEmptyGrid(self):
         """Generates an empty row with initial idx size. All 0s by default"""
         base = lambda: [0] * self.rown
-        return np.array([base() for i in range(self.coln)])
+        return np.array([base() for i in range(self.coln)], dtype= np.int64)
 
     def _fillRandomRow(self, row: list, elements: list, density_threshold, count=0):
         if count > self.rown:
@@ -45,7 +45,7 @@ class RandomGridGenerator:
 class Grid:
 
     def __init__(self, starting_grid):
-        self.grid = np.array(starting_grid)
+        self.grid = np.array(starting_grid, dtype= np.int64)
         self.rown = len(starting_grid[0])
         self.coln = len(starting_grid)
 
@@ -65,3 +65,7 @@ class Grid:
     def getNeighbors(self, row, col, dist):
         ri, ci = self._get_adjacent_with_dist(row, col, dist)
         return self.grid[list(ri), :][:, list(ci)]
+
+    def getNeighborsFromNext(self, _next, row, col, dist):
+        ri, ci = self._get_adjacent_with_dist(row, col, dist)
+        return _next[list(ri), :][:, list(ci)]
