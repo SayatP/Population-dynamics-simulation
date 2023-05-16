@@ -74,4 +74,3 @@ def approximate_5x5_to_3x3(matrix):
                 new_t[i,j] = get_single_value(matrix[i:i+3,j:j+3], (2-i,2-j))
 
     return new_t
-

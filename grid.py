@@ -1,6 +1,7 @@
 import numpy as np
 import random
 from itertools import chain
+from typing import Optional
 
 class RandomGridGenerator:
     def __init__(self, rown, coln=0):
@@ -30,14 +31,14 @@ class RandomGridGenerator:
                 row[i] = random.choice(elements)
 
     def getGrid(
-        self, elements: list[int], density_threshold: float = 0.8, max_per_row=None
+        self, elements: list[int], density_threshold: float = 0.8, max_per_row: Optional[int]=None
     ):
         """Randomly generates a grid with some possibility of items from
         elements ocurring."""
         base = self.getEmptyGrid()
         max_per_row = max_per_row or self.coln
 
-        for idx, row in enumerate(base):
+        for row in base:
             self._fillRandomRow(row, elements, density_threshold, max_per_row)
 
         return base
